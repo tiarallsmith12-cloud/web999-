@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AURA WEB</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:Arial,sans-serif;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+#home{
+    width:100%;
+    height:100dvh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #8b5a25 0%,
+            #392719 35%,
+            #100c08 70%,
+            #000 100%
+        );
+
+    color:white;
+    text-align:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+
+#home::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    left:50%;
+    top:40%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,190,90,.35),
+            rgba(255,150,50,.12) 35%,
+            transparent 70%
+        );
+
+    animation:sunGlow 4s ease-in-out infinite alternate;
+
+    pointer-events:none;
+}
+
+
+@keyframes sunGlow{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            scale(.85);
+
+        opacity:.55;
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   WARNING BOX
+========================= */
+
+.warningBox{
+    width:100%;
+    max-width:500px;
+
+    padding:35px;
+
+    border:1px solid rgba(255,210,130,.25);
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,190,90,.10),
+            rgba(255,255,255,.03)
+        );
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 0 40px rgba(255,170,60,.12),
+        inset 0 0 30px rgba(255,200,100,.03);
+
+    position:relative;
+    z-index:2;
+
+    animation:boxAppear 1.2s ease-out;
+}
+
+
+@keyframes boxAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+
+.warningBox h1{
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+        0 0 15px rgba(255,190,90,.5);
+}
+
+
+.warningBox p{
+
+    color:#d8d0c5;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.mainButton{
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ffd28a
+        );
+
+    color:#24170b;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 20px rgba(255,190,80,.35);
+
+    transition:
+        transform .3s,
+        box-shadow .3s;
+}
+
+
+.mainButton:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 35px rgba(255,190,80,.7);
+}
+
+
+.mainButton:active{
+
+    transform:scale(.96);
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+#scamScreen{
+
+    display:none;
+
+    width:100%;
+    height:100dvh;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3d2a17,
+            #100b06 55%,
+            #020100
+        );
+
+    color:#ffd27a;
+
+    font-family:monospace;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+#scamScreen::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,170,60,.18),
+            transparent 65%
+        );
+
+    animation:loadingLight 5s ease-in-out infinite alternate;
+}
+
+
+@keyframes loadingLight{
+
+    0%{
+        transform:
+            translate(-30%,-10%)
+            scale(.8);
+    }
+
+    100%{
+        transform:
+            translate(30%,10%)
+            scale(1.2);
+    }
+
+}
+
+
+.scamBox{
+
+    width:100%;
+    max-width:650px;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:loadingAppear .8s ease-out;
+}
+
+
+@keyframes loadingAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.scamTitle{
+
+    font-size:25px;
+
+    margin-bottom:25px;
+
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 15px rgba(255,190,80,.7);
+}
+
+
+.status{
+
+    margin-bottom:15px;
+
+    color:#b9a78f;
+}
+
+
+.progressBox{
+
+    width:100%;
+
+    height:10px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-bottom:12px;
+}
+
+
+#progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b86b20,
+            #ffd27a,
+            #fff0bd
+        );
+
+    box-shadow:
+        0 0 15px #ffbd55,
+        0 0 30px rgba(255,170,50,.6);
+
+    transition:
+        width .15s linear;
+}
+
+
+#percent{
+
+    text-align:right;
+
+    color:#ffe0a3;
+}
+
+
+#fakeAccess{
+
+    display:none;
+
+    margin-top:30px;
+
+    color:#ffe0a3;
+
+    text-shadow:
+        0 0 15px #ffb52e;
+
+    animation:accessBlink 1s infinite;
+}
+
+
+@keyframes accessBlink{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.35;
+    }
+
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+#videoScene{
+
+    display:none;
+
+    position:relative;
+
+    width:100vw;
+
+    height:100dvh;
+
+    background:#000;
+
+    overflow:hidden;
+
+    animation:videoAppear 1.2s ease-out;
+}
+
+
+@keyframes videoAppear{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+#video{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    object-position:center center;
+
+    filter:
+        brightness(1.08)
+        contrast(1.08)
+        saturate(1.18);
+
+    transform:scale(1);
+
+    animation:
+        cinematicZoom 24s
+        ease-out
+        forwards;
+}
+
+
+@keyframes cinematicZoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.06);
+    }
+
+}
+
+
+/* =========================
+   GOLDEN OVERLAY
+========================= */
+
+#videoScene::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:2;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,185,80,.04),
+            transparent 30%,
+            transparent 65%,
+            rgba(255,120,30,.14)
+        );
+
+    mix-blend-mode:screen;
+
+    animation:
+        goldenBreath 4s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+@keyframes goldenBreath{
+
+    from{
+        opacity:.45;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   LIGHT SWEEP
+========================= */
+
+.lightSweep{
+
+    position:absolute;
+
+    top:-20%;
+    left:-60%;
+
+    width:45%;
+    height:140%;
+
+    pointer-events:none;
+
+    z-index:4;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,210,130,.08),
+            rgba(255,180,70,.18),
+            rgba(255,230,170,.08),
+            transparent
+        );
+
+    transform:skewX(-18deg);
+
+    filter:blur(8px);
+
+    animation:
+        lightSweep 8s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes lightSweep{
+
+    0%{
+        left:-60%;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    45%{
+        left:120%;
+        opacity:.8;
+    }
+
+    55%{
+        left:120%;
+        opacity:0;
+    }
+
+    100%{
+        left:120%;
+        opacity:0;
+    }
+
+}
+
+
+/* =================================================
+   ⭐ 3D STAR SYSTEM
+================================================= */
+
+#stars{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:5;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    perspective:900px;
+}
+
+
+/* STAR */
+
+.star{
+
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 5px #fff,
+        0 0 12px rgba(255,220,150,.9),
+        0 0 22px rgba(255,180,70,.5);
+
+    animation:
+        starFloat
+        var(--duration)
+        ease-in-out
+        infinite alternate;
+
+    transform:
+        translateZ(var(--depth))
+        scale(var(--scale));
+
+    opacity:var(--opacity);
+
+}
+
+
+/* CROSS STAR */
+
+.star::before,
+.star::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,240,190,.9),
+            transparent
+        );
+
+}
+
+
+/* horizontal */
+
+.star::before{
+
+    width:28px;
+    height:1px;
+
+}
+
+
+/* vertical */
+
+.star::after{
+
+    width:1px;
+    height:28px;
+
+}
+
+
+@keyframes starFloat{
+
+    0%{
+
+        transform:
+            translate3d(
+                0,
+                0,
+                var(--depth)
+            )
+            scale(var(--scale));
+
+        opacity:var(--opacity);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translate3d(
+                var(--moveX),
+                var(--moveY),
+                calc(var(--depth) + 80px)
+            )
+            scale(
+                calc(var(--scale) * 1.35)
+            );
+
+        opacity:.25;
+
+    }
+
+}
+
+
+/* =========================
+   SPECIAL BIG STAR
+========================= */
+
+.bigStar{
+
+    width:8px;
+    height:8px;
+
+    box-shadow:
+        0 0 8px #fff,
+        0 0 20px #ffd98a,
+        0 0 45px rgba(255,170,50,.8);
+
+    animation:
+        bigStarPulse 3s
+        ease-in-out
+        infinite;
+}
+
+
+.bigStar::before{
+
+    width:60px;
+    height:2px;
+
+}
+
+
+.bigStar::after{
+
+    width:2px;
+    height:60px;
+
+}
+
+
+@keyframes bigStarPulse{
+
+    0%,100%{
+
+        transform:
+            scale(.7);
+
+        opacity:.45;
+
+    }
+
+    50%{
+
+        transform:
+            scale(1.5);
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .warningBox{
+
+        width:100%;
+
+        padding:
+            28px 20px;
+    }
+
+
+    .warningBox h1{
+
+        font-size:25px;
+    }
+
+
+    .warningBox p{
+
+        font-size:14px;
+    }
+
+
+    .mainButton{
+
+        width:100%;
+
+        padding:16px;
+    }
+
+
+    .scamBox{
+
+        width:90%;
+    }
+
+
+    .scamTitle{
+
+        font-size:20px;
+    }
+
+
+    .status{
+
+        font-size:13px;
+    }
+
+
+    #videoScene{
+
+        width:100vw;
+        height:100dvh;
+    }
+
+
+    #video{
+
+        width:100%;
+        height:100%;
+
+        object-fit:cover;
+
+        object-position:center center;
+    }
+
+
+    .star{
+
+        width:4px;
+        height:4px;
+    }
+
+}
+
+
+/* =========================
+   HP KECIL
+========================= */
+
+@media(max-width:380px){
+
+    .warningBox h1{
+
+        font-size:22px;
+    }
+
+
+    .warningBox p{
+
+        font-size:13px;
+    }
+
+}
+/* =========================
+   🌠 SHOOTING STAR
+========================= */
+
+.shooting-star{
+    position:absolute;
+    width:140px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,245,210,.9),
+        #fff
+    );
+
+    border-radius:50%;
+
+    transform:rotate(-25deg);
+
+    z-index:6;
+    pointer-events:none;
+
+    animation:shootingStar 1.2s linear forwards;
+}
+
+@keyframes shootingStar{
+
+    0%{
+        transform:
+            translate(0,0)
+            rotate(-25deg)
+        scaleX(.2);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translate(450px,220px)
+            rotate(-25deg)
+        scaleX(1);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   ✨ FLOATING DUST
+========================= */
+
+.dust{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#ffe7b0;
+
+    box-shadow:
+        0 0 8px rgba(255,220,150,.8);
+
+    z-index:5;
+
+    pointer-events:none;
+
+    animation:dustFloat var(--dustTime) ease-in-out infinite;
+}
+
+@keyframes dustFloat{
+
+    0%{
+        transform:
+            translate3d(0,30px,0)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    30%{
+        opacity:.7;
+    }
+
+    70%{
+        opacity:.4;
+    }
+
+    100%{
+        transform:
+            translate3d(
+                var(--dustX),
+                -100px,
+                0
+            )
+            scale(1.2);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   ☀️ SUN FLARE
+========================= */
+
+.sunFlare{
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-80px;
+    top:-70px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,245,190,.25),
+            rgba(255,180,70,.12) 35%,
+            transparent 70%
+        );
+
+    filter:blur(8px);
+
+    z-index:4;
+
+    pointer-events:none;
+
+    animation:sunPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes sunPulse{
+
+    from{
+        transform:scale(.8);
+        opacity:.35;
+    }
+
+    to{
+        transform:scale(1.25);
+        opacity:.8;
+    }
+}
+
+
+/* =========================
+   🎞️ CINEMATIC LETTERBOX
+========================= */
+
+.letterbox{
+
+    position:absolute;
+
+    left:0;
+    width:100%;
+
+    height:7%;
+
+    background:#000;
+
+    z-index:8;
+
+    pointer-events:none;
+
+    animation:letterboxIn 1.5s ease-out forwards;
+}
+
+.letterbox.top{
+    top:0;
+}
+
+.letterbox.bottom{
+    bottom:0;
+}
+
+@keyframes letterboxIn{
+
+    from{
+        height:0;
+    }
+
+    to{
+        height:7%;
+    }
+}
+
+
+/* =========================
+   🌅 CINEMATIC FADE
+========================= */
+
+#videoScene{
+
+    animation:
+        cinematicEnter 2s ease-out forwards;
+}
+
+@keyframes cinematicEnter{
+
+    from{
+        opacity:0;
+        transform:scale(1.03);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<div id="home">
+
+    <div class="warningBox">
+
+        <h1>⚠️ SYSTEM NOTICE</h1>
+
+        <p>
+
+            This page contains a highly classified
+            visual experience.
+
+            <br><br>
+
+            Continue only if you are ready.
+
+        </p>
+
+        <button
+            class="mainButton"
+            onclick="klikTombol()"
+        >
+
+            CONTINUE
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="scamScreen">
+
+    <div class="scamBox">
+
+        <div class="scamTitle">
+            SYSTEM ACCESS
+        </div>
+
+        <div
+            class="status"
+            id="status"
+        >
+            Establishing secure connection...
+        </div>
+
+        <div class="progressBox">
+
+            <div id="progress"></div>
+
+        </div>
+
+        <div id="percent">
+            0%
+        </div>
+
+        <div id="fakeAccess">
+            ACCESS GRANTED ✓
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     VIDEO
+========================= -->
+
+<div id="videoScene">
+
+    <video
+        id="video"
+        playsinline
+        preload="auto"
+    >
+
+        <source
+            src="video.mp4"
+            type="video/mp4"
+        >
+
+    </video>
+
+
+    <!-- ⭐ BINTANG -->
+
+    <div id="stars"></div>
+
+
+    <!-- ✨ LIGHT SWEEP -->
+
+    <div class="lightSweep"></div>
+
+
+    <!-- 🎵 AUDIO -->
+
+    <audio
+        id="lagu"
+        preload="auto"
+    >
+
+        <source
+            src="lagu.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+</div>
+
+
+
+<script>
+
+
+/* =================================================
+   ⭐ CREATE 3D STARS
+================================================= */
+
+function createStars(){
+
+    const container =
+        document.getElementById("stars");
+
+
+    /*
+       Jangan terlalu banyak
+       supaya HP tetap ringan
+    */
+
+    const jumlah =
+        window.innerWidth <= 600
+        ? 22
+        : 35;
+
+
+    for(
+        let i = 0;
+        i < jumlah;
+        i++
+    ){
+
+        const star =
+            document.createElement("div");
+
+
+        star.className =
+            "star";
+
+
+        /* posisi */
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+
+        /* kedalaman 3D */
+
+        const depth =
+            Math.floor(
+                Math.random() * 700
+            ) - 300;
+
+
+        star.style.setProperty(
+            "--depth",
+            depth + "px"
+        );
+
+
+        /* ukuran */
+
+        const scale =
+            0.35 +
+            Math.random() * 1.2;
+
+
+        star.style.setProperty(
+            "--scale",
+            scale
+        );
+
+
+        /* transparansi */
+
+        star.style.setProperty(
+            "--opacity",
+            0.25 +
+            Math.random() * 0.7
+        );
+
+
+        /* arah gerakan */
+
+        star.style.setProperty(
+            "--moveX",
+            (
+                Math.random() * 50 - 25
+            ) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--moveY",
+            (
+                Math.random() * 50 - 25
+            ) + "px"
+        );
+
+
+        /* kecepatan */
+
+        star.style.setProperty(
+            "--duration",
+            (
+                3 +
+                Math.random() * 6
+            ) + "s"
+        );
+
+
+        container.appendChild(star);
+
+    }
+
+
+    /* =========================
+       BIG STARS
+    ========================= */
+
+    for(
+        let i = 0;
+        i < 4;
+        i++
+    ){
+
+        const big =
+            document.createElement("div");
+
+
+        big.className =
+            "star bigStar";
+
+
+        big.style.left =
+            (
+                10 +
+                Math.random() * 80
+            ) + "%";
+
+
+        big.style.top =
+            (
+                10 +
+                Math.random() * 70
+            ) + "%";
+
+
+        container.appendChild(big);
+
+    }
+
+}
+
+
+createStars();
+
+
+
+/* =================================================
+   MAIN BUTTON
+================================================= */
+
+function klikTombol(){
+
+    const home =
+        document.getElementById("home");
+
+    const scam =
+        document.getElementById("scamScreen");
+
+    const videoScene =
+        document.getElementById("videoScene");
+
+    const video =
+        document.getElementById("video");
+
+    const lagu =
+        document.getElementById("lagu");
+
+    const progress =
+        document.getElementById("progress");
+
+    const percent =
+        document.getElementById("percent");
+
+    const status =
+        document.getElementById("status");
+
+    const access =
+        document.getElementById("fakeAccess");
+
+
+    /* HOME HILANG */
+
+    home.style.display =
+        "none";
+
+
+    scam.style.display =
+        "flex";
+
+
+    /* AUDIO */
+
+    lagu.pause();
+
+    lagu.currentTime =
+        0;
+
+    lagu.volume =
+        1;
+
+    lagu.muted =
+        false;
+
+
+    const playAudio =
+        lagu.play();
+
+
+    if(playAudio){
+
+        playAudio.catch(
+            function(error){
+
+                console.log(
+                    "Audio error:",
+                    error
+                );
+
+            }
+        );
+
+    }
+
+
+    /* LOADING */
+
+    let angka = 0;
+
+
+    const loading =
+        setInterval(
+            function(){
+
+                angka +=
+                    Math.floor(
+                        Math.random() * 12
+                    ) + 5;
+
+
+                if(angka >= 100){
+
+                    angka = 100;
+
+
+                    clearInterval(
+                        loading
+                    );
+
+
+                    status.innerText =
+                        "Connection established.";
+
+
+                    access.style.display =
+                        "block";
+
+
+                    setTimeout(
+                        function(){
+
+                            scam.style.display =
+                                "none";
+
+
+                            videoScene.style.display =
+                                "block";
+
+
+                            video.currentTime =
+                                0;
+
+
+                            /* restart zoom */
+
+                            video.style.animation =
+                                "none";
+
+
+                            void video.offsetWidth;
+
+
+                            video.style.animation =
+                                "cinematicZoom 24s ease-out forwards";
+
+
+                            /* play video */
+
+                            const playVideo =
+                                video.play();
+
+
+                            if(playVideo){
+
+                                playVideo.catch(
+                                    function(error){
+
+                                        console.log(
+                                            "Video error:",
+                                            error
+                                        );
+
+                                    }
+                                );
+
+                            }
+
+                        },
+                        700
+                    );
+
+                }
+
+
+                progress.style.width =
+                    angka + "%";
+
+
+                percent.innerText =
+                    angka + "%";
+
+
+            },
+            180
+        );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
